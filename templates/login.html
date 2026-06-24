@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Вхід до кабінету{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm border rounded-3 p-4 bg-white">
+            <h2 class="text-center mb-4 fw-bold text-dark">Авторизація</h2>
+            
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Електронна пошта</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Введіть ваш пароль" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 btn-lg">Увійти в систему</button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <span class="text-muted">Ще не маєте акаунту?</span> 
+                <a href="/register-page" class="text-decoration-none">Створити акаунт</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

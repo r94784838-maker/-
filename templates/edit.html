@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Редагування профілю{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border rounded-3 p-4 bg-white">
+            <h2 class="text-center mb-4 fw-bold text-dark">✏️ Редагування власних даних</h2>
+            
+            <form action="/edit" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ім’я</label>
+                        <input type="text" name="first_name" class="form-control" value="{{ person.PersonalInfo.first_name }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Прізвище</label>
+                        <input type="text" name="second_name" class="form-control" value="{{ person.PersonalInfo.second_name }}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Дата народження</label>
+                        <input type="date" name="date_of_birth" class="form-control" value="{{ person.PersonalInfo.date_of_birth }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Стать</label>
+                        <select name="id_gender" class="form-select" required>
+                            {% for g in genders %}
+                            <option value="{{ g.id_gender }}" {% if g.id_gender == person.Person.id_gender %}selected{% endif %}>{{ g.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Національність</label>
+                        <select name="id_nation" class="form-select" required>
+                            {% for n in nationalities %}
+                            <option value="{{ n.id_nation }}" {% if n.id_nation == person.Person.id_nation %}selected{% endif %}>{{ n.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Назва організації</label>
+                        <input type="text" name="organization_name" class="form-control" value="{{ person.Person.organization_name }}" required>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Посада</label>
+                    <input type="text" name="job_title" class="form-control" value="{{ person.Person.job_title }}" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 btn-lg shadow-sm">Зберегти оновлені дані</button>
+                <a href="/participants" class="btn btn-outline-secondary w-100 mt-2">Скасувати зміни</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

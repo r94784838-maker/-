@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Реєстрація учасника{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border rounded-3 p-4 bg-white">
+            <h2 class="text-center mb-4 fw-bold text-dark">Реєстрація на конференцію</h2>
+            
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                <strong>Помилка!</strong> {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            
+            <form action="/register" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ім’я</label>
+                        <input type="text" name="first_name" class="form-control" required placeholder="Іван">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Прізвище</label>
+                        <input type="text" name="second_name" class="form-control" required placeholder="Іванов">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Дата народження</label>
+                        <input type="date" name="date_of_birth" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Стать</label>
+                        <select name="id_gender" class="form-select" required>
+                            <option value="" disabled selected>Оберіть стать...</option>
+                            {% for g in genders %}
+                            <option value="{{ g.id_gender }}">{{ g.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Національність</label>
+                        <select name="id_nation" class="form-select" required>
+                            <option value="" disabled selected>Оберіть національність...</option>
+                            {% for n in nationalities %}
+                            <option value="{{ n.id_nation }}">{{ n.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Назва організації</label>
+                        <input type="text" name="organization_name" class="form-control" required placeholder="Назва університету або компанії">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Посада</label>
+                    <input type="text" name="job_title" class="form-control" required placeholder="Студент, розробник, аспірант...">
+                </div>
+
+                <hr class="my-4">
+
+                <div class="mb-3">
+                    <label class="form-label">Електронна пошта (Email)</label>
+                    <input type="email" name="email" class="form-control" required placeholder="example@email.com">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-control" required placeholder="Мінімум 6 символів">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Підтвердження пароля</label>
+                        <input type="password" name="confirm_password" class="form-control" required placeholder="Повторіть пароль">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 btn-lg mt-3">Зареєструватися на подію</button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <span class="text-muted">Вже маєте акаунт?</span> <a href="/login-page" class="text-decoration-none">Увійти</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

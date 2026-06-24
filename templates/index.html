@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Головна сторінка - Огляд конференцій{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold text-dark">Вітаємо у системі реєстрації!</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted">
+            Тут ви можете швидко зареєструватися як учасник майбутніх наукових та технологічних конференцій, керувати своїм профілем та переглядати посилання на онлайн-трансляції.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="/register-page" class="btn btn-primary btn-lg px-4 gap-3">Зареєструватися</a>
+            <a href="/login-page" class="btn btn-outline-secondary btn-lg px-4">Увійти в кабінет</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
